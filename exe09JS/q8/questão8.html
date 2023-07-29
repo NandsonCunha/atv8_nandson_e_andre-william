@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meus Filmes favoritos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        div label {
+            margin-right: 10px;
+            width: 100px;
+        }
+
+        div input[type="text"] {
+            flex: 1;
+            padding: 5px;
+        }
+
+        div button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        div button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Meus filmes favoritos</h1>
+
+    <div>
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" required>
+    </div>
+
+    <div>
+        <label for="genero">Gênero:</label>
+        <input type="text" id="genero" required>
+    </div>
+
+    <div>
+        <button onclick="cadastrarFilme()">Cadastrar</button>
+    </div>
+
+    <h2 class="center">Lista de Filmes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Gênero</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="filmesBody">
+        </tbody>
+    </table>
+
+    <script>
+        function criarElemento(tag, atributos = {}, texto = "") {
+            const elemento = document.createElement(tag);
+            for (let chave in atributos) {
+                elemento.setAttribute(chave, atributos[chave]);
+            }
+            elemento.textContent = texto;
+            return elemento;
+        }
+
+        function cadastrarFilme() {
+            event.preventDefault();
+            const titulo = document.getElementById("titulo").value;
+            const genero = document.getElementById("genero").value;
+            if (titulo && genero) {
+                const novoFilme = {
+                    titulo: titulo,
+                    genero: genero
+                };
+                let filmes = localStorage.getItem("filmes") ? JSON.parse(localStorage.getItem("filmes")) : [];
+                filmes.push(novoFilme);
+                localStorage.setItem("filmes", JSON.stringify(filmes));
+                exibirFilmes();
+                document.getElementById("titulo").value = "";
+                document.getElementById("genero").value = "";
+            }
+        }
+
+        function exibirFilmes() {
+            const filmes = localStorage.getItem("filmes") ? JSON.parse(localStorage.getItem("filmes")) : [];
+            const tableBody = document.getElementById("filmesBody");
+            tableBody.innerHTML = "";
+            filmes.forEach((filme, index) => {
+                const row = criarElemento("tr");
+                const tituloCell = criarElemento("td", {}, filme.titulo);
+                row.appendChild(tituloCell);
+                const generoCell = criarElemento("td", {}, filme.genero);
+                row.appendChild(generoCell);
+                const excluirCell = criarElemento("td");
+                const excluirButton = criarElemento("button", { onclick: `excluirFilme(${index})` }, "❌");
+                excluirCell.appendChild(excluirButton);
+                row.appendChild(excluirCell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function excluirFilme(index) {
+            let filmes = localStorage.getItem("filmes") ? JSON.parse(localStorage.getItem("filmes")) : [];
+            filmes.splice(index, 1);
+            localStorage.setItem("filmes", JSON.stringify(filmes));
+            exibirFilmes();
+        }
+
+        exibirFilmes();
+    </script>
+</body>
+</html>

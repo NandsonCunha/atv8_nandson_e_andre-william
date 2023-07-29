@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Revenda Herbie</title>
+</head>
+<body>
+    <h1>Revenda Herbie</h1>
+    <label for="modelo">Modelo:</label>
+    <input type="text" id="modelo">
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco">
+    <button onclick="adicionarCarro()">Adicionar Carro</button>
+
+    <h2>Carros Disponíveis</h2>
+    <ul id="carrosDisponiveis"></ul>
+
+    <h2>Promoção</h2>
+    <label for="desconto">Desconto (%):</label>
+    <input type="number" id="desconto">
+    <button onclick="simularPromocao()">Simular Promoção</button>
+
+    <h2>Carros com Desconto</h2>
+    <ul id="carrosDesconto"></ul>
+
+    <h2>Filtrar por Preço</h2>
+    <label for="precoFiltroMin">Preço Mínimo:</label>
+    <input type="number" id="precoFiltroMin">
+    <label for="precoFiltroMax">Preço Máximo:</label>
+    <input type="number" id="precoFiltroMax">
+    <button onclick="filtrarPorPreco()">Filtrar</button>
+
+    <script src="q5.js">
+    </script>
+</body>
+</html>

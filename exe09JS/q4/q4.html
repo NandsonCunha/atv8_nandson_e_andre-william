@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Controle de Atendimentos Odontológicos</title>
+</head>
+<body>
+    <h1>Consultório Odontológico</h1>
+    <label for="nome">Nome do Paciente:</label>
+    <input type="text" id="nome">
+
+    <button onclick="adicionarNormal()">Adicionar Paciente Normal</button>
+    <button onclick="adicionarUrgencia()">Adicionar Paciente com Urgência</button>
+    <button onclick="atenderProximo()">Atender Próximo Paciente</button>
+
+    <h2>Lista de Pacientes em Espera</h2>
+    <ul id="listaEspera"></ul>
+
+    <h2>Paciente em Atendimento</h2>
+    <p id="pacienteAtendimento">Nenhum paciente em atendimento no momento.</p>
+
+    <script src="q4.js">
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizzaria</title>
+</head>
+<body>
+    <h1>Controle de Pedidos</h1>
+
+    <input type="radio" id="pizzaRadio" name="itemType" value="pizzas" onchange="alterarTipoItem()">
+    <label for="pizzaRadio">Pizza</label>
+
+    <input type="radio" id="bebidaRadio" name="itemType" value="bebidas" onchange="alterarTipoItem()">
+    <label for="bebidaRadio">Bebida</label>
+
+    <div id="tamanhoPizza" style="display: none;">
+        <label for="tamanho">Tamanho:</label>
+        <select id="tamanho">
+            <option value="Pequena">Pequena</option>
+            <option value="Média">Média</option>
+            <option value="Grande">Grande</option>
+        </select>
+    </div>
+
+    <label for="detalhesItem">Detalhes do Pedido:</label>
+    <input type="text" id="detalhesItem">
+
+    <button onclick="adicionarPedido()">Adicionar Pedido</button>
+
+    <h2>Pedidos</h2>
+    <ul id="pedidos"></ul>
+
+    <script src="q7.js">
+    </script>
+</body>
+</html>
